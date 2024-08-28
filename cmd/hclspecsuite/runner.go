@@ -19,9 +19,9 @@ import (
 	"github.com/zclconf/go-cty/cty/convert"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/hashicorp/hcl/v2"
-	"github.com/hashicorp/hcl/v2/ext/typeexpr"
-	"github.com/hashicorp/hcl/v2/hclparse"
+	"github.com/terramate-io/hcl/v2"
+	"github.com/terramate-io/hcl/v2/ext/typeexpr"
+	"github.com/terramate-io/hcl/v2/hclparse"
 )
 
 type Runner struct {

@@ -9,7 +9,7 @@ import (
 	"unicode"
 
 	"github.com/apparentlymart/go-textseg/v15/textseg"
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 	"github.com/zclconf/go-cty/cty"
 )
 

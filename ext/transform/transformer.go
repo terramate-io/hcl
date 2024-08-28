@@ -4,7 +4,7 @@
 package transform
 
 import (
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 )
 
 // A Transformer takes a given body, applies some (possibly no-op)

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/apparentlymart/go-textseg/v15/textseg"
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 )
 
 //go:generate go run golang.org/x/tools/cmd/stringer -type tokenType scanner.go

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 )
 
 func findTraversalSpec(got hcl.Traversal, candidates []*TestFileExpectTraversal) *TestFileExpectTraversal {

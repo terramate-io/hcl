@@ -16,7 +16,7 @@
 ################################################################################
 
 FUZZERS_BASE=$SRC/hcl/hclsyntax/fuzz
-FUZZERS_PACKAGE=github.com/hashicorp/hcl/v2/hclsyntax/fuzz
+FUZZERS_PACKAGE=github.com/terramate-io/hcl/v2/hclsyntax/fuzz
 FUZZER_CLASS=Fuzz
 
 for THE_FUZZER in config expr template traversal

@@ -96,7 +96,7 @@ package hclsyntax
 // Run 'go generate' on this package to update the set of functions here.
 
 import (
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 )`
 
 const outputMethodFmt = `
