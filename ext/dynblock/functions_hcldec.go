@@ -4,8 +4,8 @@
 package dynblock
 
 import (
-	"github.com/hashicorp/hcl/v2"
-	"github.com/hashicorp/hcl/v2/hcldec"
+	"github.com/terramate-io/hcl/v2"
+	"github.com/terramate-io/hcl/v2/hcldec"
 )
 
 // This is duplicated from ext/dynblock/variables_hcldec.go and modified to suit functions

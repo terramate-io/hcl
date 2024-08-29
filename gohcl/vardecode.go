@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 )
 
 func VariablesInBody(body hcl.Body, val interface{}) ([]hcl.Traversal, hcl.Diagnostics) {
