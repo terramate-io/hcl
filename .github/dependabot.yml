@@ -8,7 +8,7 @@ updates:
       - dependencies
       - automated
     reviewers:
-      - hashicorp/terraform-core
+      - terramate-io/cli-tooling
     # only update HashiCorp actions, external actions managed by TSCCR
     allow:
       - dependency-name: hashicorp/*

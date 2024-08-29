@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/hashicorp/hcl/v2"
-	"github.com/hashicorp/hcl/v2/ext/customdecode"
+	"github.com/terramate-io/hcl/v2"
+	"github.com/terramate-io/hcl/v2/ext/customdecode"
 	"github.com/zclconf/go-cty/cty"
 	"github.com/zclconf/go-cty/cty/convert"
 	"github.com/zclconf/go-cty/cty/function"
@@ -46,7 +46,8 @@ func TypeConstraintFromVal(v cty.Value) cty.Type {
 // ConvertFunc is a cty function that implements type conversions.
 //
 // Its signature is as follows:
-//     convert(value, type_constraint)
+//
+//	convert(value, type_constraint)
 //
 // ...where type_constraint is a type constraint expression as defined by
 // typeexpr.TypeConstraint.

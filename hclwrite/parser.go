@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/hashicorp/hcl/v2"
-	"github.com/hashicorp/hcl/v2/hclsyntax"
+	"github.com/terramate-io/hcl/v2"
+	"github.com/terramate-io/hcl/v2/hclsyntax"
 	"github.com/zclconf/go-cty/cty"
 )
 
@@ -521,10 +521,10 @@ func writerTokens(nativeTokens hclsyntax.Tokens) Tokens {
 // boundaries, such that the slice operator could be used to produce
 // three token sequences for before, within, and after respectively:
 //
-//     start, end := partitionTokens(toks, rng)
-//     before := toks[:start]
-//     within := toks[start:end]
-//     after := toks[end:]
+//	start, end := partitionTokens(toks, rng)
+//	before := toks[:start]
+//	within := toks[start:end]
+//	after := toks[end:]
 //
 // This works best when the range is aligned with token boundaries (e.g.
 // because it was produced in terms of the scanner's result) but if that isn't

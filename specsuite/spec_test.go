@@ -31,12 +31,12 @@ func TestMain(m *testing.M) {
 }
 
 func build() error {
-	err := goBuild("github.com/hashicorp/hcl/v2/cmd/hcldec", "tmp_hcldec")
+	err := goBuild("github.com/terramate-io/hcl/v2/cmd/hcldec", "tmp_hcldec")
 	if err != nil {
 		return fmt.Errorf("error building hcldec: %s", err)
 	}
 
-	err = goBuild("github.com/hashicorp/hcl/v2/cmd/hclspecsuite", "tmp_hclspecsuite")
+	err = goBuild("github.com/terramate-io/hcl/v2/cmd/hclspecsuite", "tmp_hclspecsuite")
 	if err != nil {
 		return fmt.Errorf("error building hcldec: %s", err)
 	}

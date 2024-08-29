@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 	"github.com/zclconf/go-cty-debug/ctydebug"
 	"github.com/zclconf/go-cty/cty"
 )
@@ -2669,6 +2669,87 @@ block "valid" {}
 				EndRange: hcl.Range{
 					Start: hcl.Pos{Line: 2, Column: 1, Byte: 14},
 					End:   hcl.Pos{Line: 2, Column: 1, Byte: 14},
+				},
+			},
+		},
+		{
+			"a = { b = c. }",
+			1,
+			&Body{
+				Attributes: Attributes{
+					"a": {
+						Name: "a",
+						Expr: &ObjectConsExpr{
+							Items: []ObjectConsItem{
+								{
+									KeyExpr: &ObjectConsKeyExpr{
+										Wrapped: &ScopeTraversalExpr{
+											Traversal: hcl.Traversal{
+												hcl.TraverseRoot{
+													Name: "b",
+													SrcRange: hcl.Range{
+														Start: hcl.Pos{Line: 1, Column: 7, Byte: 6},
+														End:   hcl.Pos{Line: 1, Column: 8, Byte: 7},
+													},
+												},
+											},
+											SrcRange: hcl.Range{
+												Start: hcl.Pos{Line: 1, Column: 7, Byte: 6},
+												End:   hcl.Pos{Line: 1, Column: 8, Byte: 7},
+											},
+										},
+									},
+									ValueExpr: &ExprSyntaxError{
+										Placeholder: cty.DynamicVal,
+										SrcRange: hcl.Range{
+											Start: hcl.Pos{Line: 1, Column: 11, Byte: 10},
+											End:   hcl.Pos{Line: 1, Column: 13, Byte: 12},
+										},
+										ParseDiags: hcl.Diagnostics{
+											{
+												Severity: hcl.DiagError,
+												Summary:  "Invalid attribute name",
+												Detail:   "An attribute name is required after a dot.",
+												Subject: &hcl.Range{
+													Start: hcl.Pos{Line: 1, Column: 14, Byte: 13},
+													End:   hcl.Pos{Line: 1, Column: 15, Byte: 14},
+												},
+											},
+										},
+									},
+								},
+							},
+							SrcRange: hcl.Range{
+								Start: hcl.Pos{Line: 1, Column: 5, Byte: 4},
+								End:   hcl.Pos{Line: 1, Column: 15, Byte: 14},
+							},
+							OpenRange: hcl.Range{
+								Start: hcl.Pos{Line: 1, Column: 5, Byte: 4},
+								End:   hcl.Pos{Line: 1, Column: 6, Byte: 5},
+							},
+						},
+						SrcRange: hcl.Range{
+							Start: hcl.Pos{Line: 1, Column: 1, Byte: 0},
+							End:   hcl.Pos{Line: 1, Column: 15, Byte: 14},
+						},
+						NameRange: hcl.Range{
+							Start: hcl.Pos{Line: 1, Column: 1, Byte: 0},
+							End:   hcl.Pos{Line: 1, Column: 2, Byte: 1},
+						},
+						EqualsRange: hcl.Range{
+							Start: hcl.Pos{Line: 1, Column: 3, Byte: 2},
+							End:   hcl.Pos{Line: 1, Column: 4, Byte: 3},
+						},
+					},
+				},
+				Blocks: Blocks{},
+				SrcRange: hcl.Range{
+					Start: hcl.Pos{Line: 1, Column: 1, Byte: 0},
+					End:   hcl.Pos{Line: 1, Column: 15, Byte: 14},
+				},
+				EndRange: hcl.Range{
+					Start: hcl.Pos{Line: 1, Column: 15, Byte: 14},
+					End:   hcl.Pos{Line: 1, Column: 15, Byte: 14},
 				},
 			},
 		},

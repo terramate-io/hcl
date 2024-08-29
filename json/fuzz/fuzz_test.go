@@ -6,7 +6,7 @@ package fuzzjson
 import (
 	"testing"
 
-	"github.com/hashicorp/hcl/v2/json"
+	"github.com/terramate-io/hcl/v2/json"
 )
 
 func FuzzParse(f *testing.F) {

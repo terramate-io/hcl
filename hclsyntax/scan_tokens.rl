@@ -6,7 +6,7 @@ package hclsyntax
 import (
     "bytes"
 
-    "github.com/hashicorp/hcl/v2"
+    "github.com/terramate-io/hcl/v2"
 )
 
 // This file is generated from scan_tokens.rl. DO NOT EDIT.
