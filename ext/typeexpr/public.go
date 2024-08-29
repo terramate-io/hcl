@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/hashicorp/hcl/v2/hclsyntax"
+	"github.com/terramate-io/hcl/v2/hclsyntax"
 
-	"github.com/hashicorp/hcl/v2"
+	"github.com/terramate-io/hcl/v2"
 	"github.com/zclconf/go-cty/cty"
 )
 
