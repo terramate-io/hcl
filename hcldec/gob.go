@@ -12,15 +12,17 @@ func init() {
 	// specs can be sent over gob channels, such as using
 	// github.com/hashicorp/go-plugin with plugins that need to describe
 	// what shape of configuration they are expecting.
-	gob.Register(ObjectSpec(nil))
-	gob.Register(TupleSpec(nil))
-	gob.Register((*AttrSpec)(nil))
-	gob.Register((*LiteralSpec)(nil))
-	gob.Register((*ExprSpec)(nil))
-	gob.Register((*BlockSpec)(nil))
-	gob.Register((*BlockListSpec)(nil))
-	gob.Register((*BlockSetSpec)(nil))
-	gob.Register((*BlockMapSpec)(nil))
-	gob.Register((*BlockLabelSpec)(nil))
-	gob.Register((*DefaultSpec)(nil))
+	// NOTE(i4k): use RegisterName() instead of Register() because the latter panics
+	// if the registered types are used in alias types.
+	gob.RegisterName("hcldec.ObjectSpec", ObjectSpec(nil))
+	gob.RegisterName("hcldec.TupleSpec", TupleSpec(nil))
+	gob.RegisterName("*hcldec.AttrSpec", (*AttrSpec)(nil))
+	gob.RegisterName("*hcldec.LiteralSpec", (*LiteralSpec)(nil))
+	gob.RegisterName("*hcldec.ExprSpec", (*ExprSpec)(nil))
+	gob.RegisterName("*hcldec.BlockSpec", (*BlockSpec)(nil))
+	gob.RegisterName("*hcldec.BlockListSpec", (*BlockListSpec)(nil))
+	gob.RegisterName("*hcldec.BlockSetSpec", (*BlockSetSpec)(nil))
+	gob.RegisterName("*hcldec.BlockMapSpec", (*BlockMapSpec)(nil))
+	gob.RegisterName("*hcldec.BlockLabelSpec", (*BlockLabelSpec)(nil))
+	gob.RegisterName("*hcldec.DefaultSpec", (*DefaultSpec)(nil))
 }
