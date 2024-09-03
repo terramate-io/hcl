@@ -597,17 +597,11 @@ Token:
 
 			default:
 				if !p.recovery {
-					suggestions := []string{"if", "for", "else", "endif", "endfor"}
 					given := string(kw.Bytes)
-					suggestion := nameSuggestion(given, suggestions)
-					if suggestion != "" {
-						suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-					}
-
 					diags = append(diags, &hcl.Diagnostic{
 						Severity: hcl.DiagError,
 						Summary:  "Invalid template control keyword",
-						Detail:   fmt.Sprintf("%q is not a valid template control keyword.%s", given, suggestion),
+						Detail:   fmt.Sprintf("%q is not a valid template control keyword", given),
 						Subject:  &kw.Range,
 						Context:  hcl.RangeBetween(next.Range, kw.Range).Ptr(),
 					})

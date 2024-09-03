@@ -302,16 +302,11 @@ func (e *FunctionCallExpr) Value(ctx *hcl.EvalContext) (cty.Value, hcl.Diagnosti
 					},
 				}
 			} else {
-				suggestion := nameSuggestion(name, avail)
-				if suggestion != "" {
-					suggestion = fmt.Sprintf(" Did you mean %s%s?", namespace, suggestion)
-				}
-
 				return cty.DynamicVal, hcl.Diagnostics{
 					{
 						Severity:    hcl.DiagError,
 						Summary:     "Call to unknown function",
-						Detail:      fmt.Sprintf("There is no function named %q in namespace %s.%s", name, namespace, suggestion),
+						Detail:      fmt.Sprintf("There is no function named %q in namespace %s", name, namespace),
 						Subject:     &e.NameRange,
 						Context:     e.Range().Ptr(),
 						Expression:  e,
@@ -321,21 +316,11 @@ func (e *FunctionCallExpr) Value(ctx *hcl.EvalContext) (cty.Value, hcl.Diagnosti
 				}
 			}
 		}
-
-		avail := make([]string, 0, len(ctx.Functions))
-		for name := range ctx.Functions {
-			avail = append(avail, name)
-		}
-		suggestion := nameSuggestion(e.Name, avail)
-		if suggestion != "" {
-			suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-		}
-
 		return cty.DynamicVal, hcl.Diagnostics{
 			{
 				Severity:    hcl.DiagError,
 				Summary:     "Call to unknown function",
-				Detail:      fmt.Sprintf("There is no function named %q.%s", e.Name, suggestion),
+				Detail:      fmt.Sprintf("There is no function named %q", e.Name),
 				Subject:     &e.NameRange,
 				Context:     e.Range().Ptr(),
 				Expression:  e,

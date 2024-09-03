@@ -69,23 +69,10 @@ func (b *Body) Content(schema *hcl.BodySchema) (*hcl.BodyContent, hcl.Diagnostic
 				}
 				suggestions = append(suggestions, attrS.Name)
 			}
-			suggestion := nameSuggestion(name, suggestions)
-			if suggestion != "" {
-				suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-			} else {
-				// Is there a block of the same name?
-				for _, blockS := range schema.Blocks {
-					if blockS.Type == name {
-						suggestion = fmt.Sprintf(" Did you mean to define a block of type %q?", name)
-						break
-					}
-				}
-			}
-
 			diags = append(diags, &hcl.Diagnostic{
 				Severity: hcl.DiagError,
 				Summary:  "Unsupported argument",
-				Detail:   fmt.Sprintf("An argument named %q is not expected here.%s", name, suggestion),
+				Detail:   fmt.Sprintf("An argument named %q is not expected here", name),
 				Subject:  &attr.NameRange,
 			})
 		}
@@ -94,27 +81,10 @@ func (b *Body) Content(schema *hcl.BodySchema) (*hcl.BodyContent, hcl.Diagnostic
 	for _, block := range b.Blocks {
 		blockTy := block.Type
 		if _, hidden := remain.hiddenBlocks[blockTy]; !hidden {
-			var suggestions []string
-			for _, blockS := range schema.Blocks {
-				suggestions = append(suggestions, blockS.Type)
-			}
-			suggestion := nameSuggestion(blockTy, suggestions)
-			if suggestion != "" {
-				suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-			} else {
-				// Is there an attribute of the same name?
-				for _, attrS := range schema.Attributes {
-					if attrS.Name == blockTy {
-						suggestion = fmt.Sprintf(" Did you mean to define argument %q? If so, use the equals sign to assign it a value.", blockTy)
-						break
-					}
-				}
-			}
-
 			diags = append(diags, &hcl.Diagnostic{
 				Severity: hcl.DiagError,
 				Summary:  "Unsupported block type",
-				Detail:   fmt.Sprintf("Blocks of type %q are not expected here.%s", blockTy, suggestion),
+				Detail:   fmt.Sprintf("Blocks of type %q are not expected here", blockTy),
 				Subject:  &block.TypeRange,
 			})
 		}

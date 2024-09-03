@@ -59,15 +59,10 @@ func (b *body) Content(schema *hcl.BodySchema) (*hcl.BodyContent, hcl.Diagnostic
 		}
 
 		if _, ok := hiddenAttrs[k]; !ok {
-			suggestion := nameSuggestion(k, nameSuggestions)
-			if suggestion != "" {
-				suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-			}
-
 			diags = append(diags, &hcl.Diagnostic{
 				Severity: hcl.DiagError,
 				Summary:  "Extraneous JSON object property",
-				Detail:   fmt.Sprintf("No argument or block type is named %q.%s", k, suggestion),
+				Detail:   fmt.Sprintf("No argument or block type is named %q", k),
 				Subject:  &attr.NameRange,
 				Context:  attr.Range().Ptr(),
 			})

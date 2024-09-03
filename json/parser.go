@@ -490,16 +490,11 @@ func parseKeyword(p *peeker) (node, hcl.Diagnostics) {
 			},
 		}
 	default:
-		var dym string
-		if suggest := keywordSuggestion(s); suggest != "" {
-			dym = fmt.Sprintf(" Did you mean %q?", suggest)
-		}
-
 		return nil, hcl.Diagnostics{
 			{
 				Severity: hcl.DiagError,
 				Summary:  "Invalid JSON keyword",
-				Detail:   fmt.Sprintf("%q is not a valid JSON keyword.%s", s, dym),
+				Detail:   fmt.Sprintf("%q is not a valid JSON keyword", s),
 				Subject:  &tok.Range,
 			},
 		}
