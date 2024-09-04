@@ -97,24 +97,11 @@ func (t Traversal) TraverseAbs(ctx *EvalContext) (cty.Value, Diagnostics) {
 		}
 	}
 
-	suggestions := make([]string, 0, len(ctx.Variables))
-	thisCtx = ctx
-	for thisCtx != nil {
-		for k := range thisCtx.Variables {
-			suggestions = append(suggestions, k)
-		}
-		thisCtx = thisCtx.parent
-	}
-	suggestion := nameSuggestion(name, suggestions)
-	if suggestion != "" {
-		suggestion = fmt.Sprintf(" Did you mean %q?", suggestion)
-	}
-
 	return cty.DynamicVal, Diagnostics{
 		{
 			Severity: DiagError,
 			Summary:  "Unknown variable",
-			Detail:   fmt.Sprintf("There is no variable named %q.%s", name, suggestion),
+			Detail:   fmt.Sprintf("There is no variable named %q", name),
 			Subject:  &root.SrcRange,
 		},
 	}
